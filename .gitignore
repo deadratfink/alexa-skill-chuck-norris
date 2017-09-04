@@ -57,3 +57,6 @@ typings/
 # dotenv environment variables file
 .env
 
+# Project
+alexa-skill-chuck-norris.iml
+.idea

@@ -1,0 +1,25 @@
+{
+  "intents": [
+    {
+      "intent": "GetNewChuckNorrisFactIntent"
+    },
+    {
+      "intent": "GetNewChuckNorrisFactAboutIntent",
+      "slots": [
+        {
+          "name": "factType",
+          "type": "FACT_TYPE"
+        }
+      ]
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
+    }
+  ]
+}

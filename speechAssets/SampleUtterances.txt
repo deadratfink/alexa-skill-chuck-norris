@@ -1,0 +1,6 @@
+GetNewChuckNorrisFactIntent a fact
+GetNewChuckNorrisFactIntent tell me a fact
+GetNewChuckNorrisFactIntent give me a fact
+GetNewChuckNorrisFactAboutIntent a {factType} fact
+GetNewChuckNorrisFactAboutIntent tell me a {factType} fact
+GetNewChuckNorrisFactAboutIntent give me a {factType} fact

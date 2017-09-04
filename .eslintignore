@@ -1,0 +1,9 @@
+coverage/**
+node_modules/**
+readme/
+.idea
+lib/
+index.js
+test/data
+test/tmp
+test/unit
