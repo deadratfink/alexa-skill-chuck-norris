@@ -1,5 +1,7 @@
+// The custom slot type:
 FACT_TYPE
 
+// Use for en-GB, en-US:
 explicit
 dev
 movie
@@ -16,3 +18,21 @@ travel
 career
 money
 fashion
+
+// Use for de-DE:
+Vulgäres
+Entwicklung
+Filme
+Essen
+celebrity
+Wissenschaft
+Politik
+Sport
+Religion
+Tiere
+Musik
+Geschichte
+Reisen
+Kariere
+Geld
+Mode
