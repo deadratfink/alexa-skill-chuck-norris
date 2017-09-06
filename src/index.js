@@ -245,7 +245,7 @@ const handlers = {
   GetNewChuckNorrisJokeAboutIntent: function () {
     // Needed to detect language.
     const language = getLanguageFromLocale(this.event.request.locale);
-    // Get teh category from request.
+    // Get the category from request.
     const category = this.event.request.intent.slots.categoryType.value;
     console.log(`CATEGORY: ${category}`);
 
