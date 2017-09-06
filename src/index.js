@@ -204,6 +204,9 @@ const handlers = {
     // Use default!
     this.emit('GetNewChuckNorrisJokeIntent');
   },
+  Unhandled: function () {
+    this.emit(':ask', this.t('HELP_MESSAGE'), this.t('HELP_REPROMPT'));
+  },
   GetNewChuckNorrisJokeIntent: function () {
     // Needed to detect language.
     const locale = this.event.request.locale;
