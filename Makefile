@@ -16,8 +16,8 @@ clean: ## Removes generated files in folders ./node_modules, ./lib and ./coverag
 	rm -rf node_modules
 	rm -rf coverage
 
-test: build ## Runs the test suite, ESLint and a [Node Security Plattform](https://nodesecurity.io/opensource) check.
-	@printf "Running test suite, ESLint and NSP...\n"
+test: ## Runs the test suite and ESLint.
+	@printf "Running test suite and ESLint...\n"
 	npm test
 	npm run eslint
 

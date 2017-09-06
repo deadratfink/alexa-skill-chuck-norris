@@ -61,6 +61,22 @@ const I18N = {
 const LOCALE_PATTERN = /^([a-z]{2})(?:[-_]([A-Z]{2})?)$/;
 
 /**
+ * Turns a given _locale_ string into a ISO 639-1 _language_ string.
+ *
+ * @param {string} locale - Converted to language string.
+ * @returns {string} The ISO 639-1 language string.
+ */
+function getLanguageFromLocale(locale) {
+  console.log(`PROVIDED LOCALE: ${locale}`);
+  const matches = LOCALE_PATTERN.exec(locale);
+  // The matches looks something like this:
+  // ["en-US", "en", "US", index: 0, input: "en-US"]
+  const language = matches[1];
+  console.log(`PARSED LANGUAGE: ${language}`);
+  return language;
+}
+
+/**
  * Microsoft Translator API function.
  *
  * @param {string} speechOutput - The speech to translate.
@@ -101,7 +117,7 @@ function translate(speechOutput, language, callback) {
    * @private
    */
   const req = https.request(options, (res) => {
-    console.log(`STATUS: ${res.statusCode}`);
+    console.log(`MS TRANSLATION API RESPONSE STATUS: ${res.statusCode}`);
     if (res.statusCode !== 200) {
       console.error(`An error occured while translating the Chuck Norris joke, error code: ${res.statusCode}.`);
       callback(`An error occurred while translating the Chuck Norris joke, error code: ${res.statusCode}.`);
@@ -128,11 +144,12 @@ function translate(speechOutput, language, callback) {
     });
 
     res.on('end', () => {
-      console.log(`TRANSLATED to ${language} (XML): ${result}`);
+      console.log(`RESULT TRANSLATED TO ${language} (XML): ${result}`);
+      // Strip the XML tags first.
       result = result
         .replace('<string xmlns="http://schemas.microsoft.com/2003/10/Serialization/">', '')
         .replace('</string>', '');
-      console.log(`TRANSLATED to ${language}: ${result}`);
+      console.log(`RESULT TRANSLATED TO ${language}: ${result}`);
       callback(result);
     });
   });
@@ -165,8 +182,9 @@ function httpGetFromChuckNorris(category, callback) {
    * @private
    */
   const req = https.request(options, (res) => {
-    console.log(`STATUS: ${res.statusCode}`);
+    console.log(`CHUCK NORRIS API RESPONSE STATUS: ${res.statusCode}`);
     if (res.statusCode !== 200) {
+      console.error(`An error occurred while getting the Chuck Norris joke, error code: ${res.statusCode}.`);
       callback(`An error occurred while getting the Chuck Norris joke, error code: ${res.statusCode}.`);
       return;
     }
@@ -187,7 +205,7 @@ function httpGetFromChuckNorris(category, callback) {
       // We can see it in the log output via:
       // console.log(JSON.stringify(returnData))
       // we may need to parse through it to extract the needed data
-      console.log(result);
+      console.log(`CHUCK NORRIS API RESULT: ${result}`);
       callback(result);
     });
   });
@@ -209,19 +227,12 @@ const handlers = {
   },
   GetNewChuckNorrisJokeIntent: function () {
     // Needed to detect language.
-    const locale = this.event.request.locale;
-    console.log('LOCALE', locale);
+    const language = getLanguageFromLocale(this.event.request.locale);
 
     httpGetFromChuckNorris(undefined, (myResult) => {
       console.log('received : ' + myResult);
       console.log('received value: ' + JSON.parse(myResult).value);
       const speechOutput = GET_JOKE_MESSAGE_PREFIX + JSON.parse(myResult).value;
-
-      const matches = LOCALE_PATTERN.exec(locale);
-      // The matches looks something like this:
-      // ["en-US", "en", "US", index: 0, input: "en-US"]
-      const language = matches[1];
-      console.log('LANGUAGE: ' + language);
       if (language === 'en') { // do not translate from 'en' to 'en'!
         this.emit(':tellWithCard', speechOutput, SKILL_NAME);
       } else {
@@ -232,19 +243,15 @@ const handlers = {
     });
   },
   GetNewChuckNorrisJokeAboutIntent: function () {
-    const category = this.event.request.intent.slots.categoryType.value;
     // Needed to detect language.
-    const locale = this.event.request.locale;
-    console.log('LOCALE', locale);
+    const language = getLanguageFromLocale(this.event.request.locale);
+    // Get teh category from request.
+    const category = this.event.request.intent.slots.categoryType.value;
+    console.log(`CATEGORY: ${category}`);
 
     httpGetFromChuckNorris(category, (myResult) => {
       console.log('received : ' + myResult);
       const speechOutput = GET_JOKE_MESSAGE_PREFIX + JSON.parse(myResult).value;
-      const matches = LOCALE_PATTERN.exec(locale);
-      // The matches looks something like this:
-      // ["en-US", "en", "US", index: 0, input: "en-US"]
-      const language = matches[1];
-      console.log('LANGUAGE: ' + language);
       if (language === 'en') { // do not translate from 'en' to 'en'!
         this.emit(':tellWithCard', speechOutput, SKILL_NAME);
       } else {
