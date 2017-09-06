@@ -42,6 +42,7 @@
     "alexa-sdk": "~1.0.12"
   },
   "devDependencies": {
+    "babel": "~6.23.0",
     "babel-eslint": "~7.2.3",
     "chalk": "~2.1.0",
     "eslint": "~4.6.1",
