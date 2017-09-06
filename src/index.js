@@ -21,7 +21,7 @@ const SKILL_NAME = 'Chuck Norris';
  * @type {string}
  * @private
  */
-const GET_FACT_MESSAGE = 'Here\'s the joke: ';
+const GET_JOKE_MESSAGE_PREFIX = 'Here\'s the joke: ';
 
 /**
  * I18n resources.
@@ -202,9 +202,9 @@ function httpGetFromChuckNorris(category, callback) {
 const handlers = {
   LaunchRequest: function () {
     // Use default!
-    this.emit('GetNewChuckNorrisFactIntent');
+    this.emit('GetNewChuckNorrisJokeIntent');
   },
-  GetNewChuckNorrisFactIntent: function () {
+  GetNewChuckNorrisJokeIntent: function () {
     // Needed to detect language.
     const locale = this.event.request.locale;
     console.log('LOCALE', locale);
@@ -212,7 +212,7 @@ const handlers = {
     httpGetFromChuckNorris(undefined, (myResult) => {
       console.log('received : ' + myResult);
       console.log('received value: ' + JSON.parse(myResult).value);
-      const speechOutput = GET_FACT_MESSAGE + JSON.parse(myResult).value;
+      const speechOutput = GET_JOKE_MESSAGE_PREFIX + JSON.parse(myResult).value;
 
       const matches = LOCALE_PATTERN.exec(locale);
       // The matches looks something like this:
@@ -228,15 +228,15 @@ const handlers = {
       }
     });
   },
-  GetNewChuckNorrisFactAboutIntent: function () {
-    const factType = this.event.request.intent.slots.factType.value;
+  GetNewChuckNorrisJokeAboutIntent: function () {
+    const category = this.event.request.intent.slots.categoryType.value;
     // Needed to detect language.
     const locale = this.event.request.locale;
     console.log('LOCALE', locale);
 
-    httpGetFromChuckNorris(factType, (myResult) => {
+    httpGetFromChuckNorris(category, (myResult) => {
       console.log('received : ' + myResult);
-      const speechOutput = GET_FACT_MESSAGE + JSON.parse(myResult).value;
+      const speechOutput = GET_JOKE_MESSAGE_PREFIX + JSON.parse(myResult).value;
       const matches = LOCALE_PATTERN.exec(locale);
       // The matches looks something like this:
       // ["en-US", "en", "US", index: 0, input: "en-US"]

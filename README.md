@@ -7,33 +7,33 @@ Alexa Lambda skill which integrates the [Chuck Norris API](https://api.chucknorr
 
 The skill supports the following use cases: 
 
-1. Ask for a random english joke/fact about Chuck Norris by calling the Chuck Norris API
+1. Ask for a random english joke about Chuck Norris by calling the Chuck Norris API
    (https://api.chucknorris.io/jokes/random). The result of the API call is passed to Alexa for reading.
    
    > Example: _Ask Chuck Norris a joke._
 2. When asking Alexa for a joke you can choose also a certain _category_ of jokes. These are defined by the API
    and can be retrieved by a call to https://api.chucknorris.io/jokes/categories.
    
-  |en-US, en-GB|
-  |---|
-  |explicit|
-  |dev|
-  |movie|
-  |food|
-  |celebrity|
-  |science|
-  |political|
-  |sport|
-  |religion|
-  |animal|
-  |music|
-  |history|
-  |travel|
-  |career|
-  |money|
-  |fashion|
+   |en-US, en-GB|de-DE|
+   |---|---|
+   |explicit|not done yet|
+   |dev|not done yet|
+   |movie|not done yet|
+   |food|not done yet|
+   |celebrity|not done yet|
+   |science|not done yet|
+   |political|not done yet|
+   |sport|not done yet|
+   |religion|not done yet|
+   |animal|not done yet|
+   |music|not done yet|
+   |history|not done yet|
+   |travel|not done yet|
+   |career|not done yet|
+   |money|not done yet|
+   |fashion|not done yet|
 
-  > Example: _Ask Chuck Norris a_ `{category}` _joke._
+   > Example: _Ask Chuck Norris a_ `{category}` _joke._
 
 All this works fine for Alexa Devices which are configured to English language. For German language (and potentially others)
 there is a translation hook depending on the passed _locale_.
@@ -43,7 +43,7 @@ there is a translation hook depending on the passed _locale_.
 Alexa passes the _locale_ to the Lambda function. Any other language parsed from this _locale_ than `'en'` is
 forwarded to the Microsoft Translation API (alongside the result from _Chuck Norris API_) which returns the proper
 translation. Of course, due to the fact that automatic translation engines are not always perfect in doing their job 
-there could be strange or even funny results for the jokes/facts in other languages.
+there could be strange or even funny results for the jokes in other languages.
 
 The [Microsoft Translation API](https://www.microsoft.com/en-us/translator/translatorapi.aspx) is
 for _commercial use_ but provides an initial trial period. Anyway, you have to
@@ -89,7 +89,7 @@ First you need to setup a Lambda function, then create the skill and configure t
     3. Add _Sample Utterances_ (copy from _./speechAssets/SampleUtterances.txt_).
 6. In _Configuration_ insert the [ARN](https://docs.aws.amazon.com/en_us/general/latest/gr/aws-arns-and-namespaces.html)
    of the created Lambda function into the _Default_ field.
-7. Optional: add more languages (of course, this requires the translation of the _utterances_ and fact types to the target language).
+7. Optional: add more languages (of course, this requires the translation of the _utterances_ and categories to the target language).
 
 ### Configure the Application ID
 
@@ -98,16 +98,9 @@ configure the Lambda function with an environment variable `APP_ID` and assign t
 
 ## Limitations
 
-A [Serverless](https://serverless.readme.io) setup is missing at the moment, but the _./src/index.js_ can simply be copied
-into the Lambda function's code window of the AWS console. 
-
-## Useful Alexa Links
-
-- https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference
-- http://alexa.design/slides
-- http://bit.ly/alexahighlow
-- http://bit.ly/alexa-cookbook
-- http://bit.ly/alexa-iot
+- A [Serverless](https://serverless.readme.io) setup is missing at the moment, but the _./src/index.js_ can simply be copied
+into the Lambda function's code window of the AWS console.
+- Joke category Mapping is not implemented yet for German language (only first use case can be applied).
 
 ## Legal disclaimer
 

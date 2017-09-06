@@ -1,5 +1,5 @@
 // The custom slot type:
-FACT_TYPE
+CATEGORY_TYPE
 
 // Use for en-GB, en-US:
 explicit

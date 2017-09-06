@@ -1,14 +1,14 @@
 {
   "intents": [
     {
-      "intent": "GetNewChuckNorrisFactIntent"
+      "intent": "GetNewChuckNorrisJokeIntent"
     },
     {
-      "intent": "GetNewChuckNorrisFactAboutIntent",
+      "intent": "GetNewChuckNorrisJokeAboutIntent",
       "slots": [
         {
-          "name": "factType",
-          "type": "FACT_TYPE"
+          "name": "categoryType",
+          "type": "CATEGORY_TYPE"
         }
       ]
     },

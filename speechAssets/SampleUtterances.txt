@@ -1,6 +1,6 @@
-GetNewChuckNorrisFactIntent a fact
-GetNewChuckNorrisFactIntent tell me a fact
-GetNewChuckNorrisFactIntent give me a fact
-GetNewChuckNorrisFactAboutIntent a {factType} fact
-GetNewChuckNorrisFactAboutIntent tell me a {factType} fact
-GetNewChuckNorrisFactAboutIntent give me a {factType} fact
+GetNewChuckNorrisJokeIntent a joke
+GetNewChuckNorrisJokeIntent tell me a joke
+GetNewChuckNorrisJokeIntent give me a joke
+GetNewChuckNorrisJokeAboutIntent a {categoryType} joke
+GetNewChuckNorrisJokeAboutIntent tell me a {categoryType} joke
+GetNewChuckNorrisJokeAboutIntent give me a {categoryType} joke
