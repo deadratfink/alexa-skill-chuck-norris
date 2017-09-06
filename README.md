@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/deadratfink/alexa-skill-chuck-norris.svg?branch=master)](https://travis-ci.org/deadratfink/alexa-skill-chuck-norris)
+
 # alexa-skill-chuck-norris
 
 Alexa Lambda skill which integrates the [Chuck Norris API](https://api.chucknorris.io) utilizing the
