@@ -62,19 +62,11 @@ configured, see also setup steps below).
 
 ## General Setup
 
-First you need to setup a Lambda function, then create the skill and configure the Application ID.
+Do the setup in this order:
 
-### Setup of Lambda Function
-
-1. Login with your account to [AWS Management Console](https://aws.amazon.com).
-2. Switch to _Lamda_ section.
-3. Click button _Create function_ (on the right top).
-4. Choose button _Author from scratch_.
-5. In _Configure triggers_ click on the dotted square (in _Add Trigger_ field) and choose _Alexa Skills Kit_, click _Next_ button.
-6. Copy the code from _./src/index.js_ to the _Lambda function code_'s field.
-7. Optional: If translation needed add `MS_OCP_APIM_SUBSCRIPTION_KEY` environment variable.
-8. Choose _lambda_basic_execution_ in _Existing role<sup>*</sup>_ field.
-9. Export the function.
+1. Setup the Alexa skill.
+2. Create a Lambda function.
+3. Configure the Application ID.
 
 ### Setup Alexa Skill
 
@@ -92,6 +84,18 @@ First you need to setup a Lambda function, then create the skill and configure t
 6. In _Configuration_ insert the [ARN](https://docs.aws.amazon.com/en_us/general/latest/gr/aws-arns-and-namespaces.html)
    of the created Lambda function into the _Default_ field.
 7. Optional: add more languages (of course, this requires the translation of the _utterances_ and categories to the target language).
+
+### Setup of Lambda Function
+
+1. Login with your account to [AWS Management Console](https://aws.amazon.com).
+2. Switch to _Lamda_ section.
+3. Click button _Create function_ (on the right top).
+4. Choose button _Author from scratch_.
+5. In _Configure triggers_ click on the dotted square (in _Add Trigger_ field) and choose _Alexa Skills Kit_, click _Next_ button.
+6. Copy the code from _./src/index.js_ to the _Lambda function code_'s field.
+7. Optional: If translation needed add `MS_OCP_APIM_SUBSCRIPTION_KEY` environment variable.
+8. Choose _lambda_basic_execution_ in _Existing role<sup>*</sup>_ field.
+9. Export the function.
 
 ### Configure the Application ID
 

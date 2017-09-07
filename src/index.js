@@ -188,6 +188,7 @@ function httpGetFromChuckNorris(category, callback) {
       callback(`An error occurred while getting the Chuck Norris joke, error code: ${res.statusCode}.`);
       return;
     }
+
     res.setEncoding('utf8');
     let result = '';
 
@@ -229,10 +230,10 @@ const handlers = {
     // Needed to detect language.
     const language = getLanguageFromLocale(this.event.request.locale);
 
-    httpGetFromChuckNorris(undefined, (myResult) => {
-      console.log('received : ' + myResult);
-      console.log('received value: ' + JSON.parse(myResult).value);
-      const speechOutput = GET_JOKE_MESSAGE_PREFIX + JSON.parse(myResult).value;
+    httpGetFromChuckNorris(undefined, (body) => {
+      console.log('RECEIVED BODY : ' + body);
+      console.log('RECEIVED VALUE: ' + JSON.parse(body).value);
+      const speechOutput = GET_JOKE_MESSAGE_PREFIX + JSON.parse(body).value;
       if (language === 'en') { // do not translate from 'en' to 'en'!
         this.emit(':tellWithCard', speechOutput, SKILL_NAME);
       } else {
@@ -249,9 +250,10 @@ const handlers = {
     const category = this.event.request.intent.slots.categoryType.value;
     console.log(`CATEGORY: ${category}`);
 
-    httpGetFromChuckNorris(category, (myResult) => {
-      console.log('received : ' + myResult);
-      const speechOutput = GET_JOKE_MESSAGE_PREFIX + JSON.parse(myResult).value;
+    httpGetFromChuckNorris(category, (body) => {
+      console.log('RECEIVED BODY : ' + body);
+      console.log('RECEIVED VALUE: ' + JSON.parse(body).value);
+      const speechOutput = GET_JOKE_MESSAGE_PREFIX + JSON.parse(body).value;
       if (language === 'en') { // do not translate from 'en' to 'en'!
         this.emit(':tellWithCard', speechOutput, SKILL_NAME);
       } else {
